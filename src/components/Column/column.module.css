@@ -1,0 +1,42 @@
+.container {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.containerForIconAndLabel {
+  display: flex;
+  align-items: center;
+}
+
+.containerForIconAndLabel div {
+  margin-left: 10px;
+}
+
+.containerForCards {
+  position: relative;
+  padding: 15px;
+  height: 100%;
+}
+
+.containerForCards::after {
+  content: " ";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  z-index: 2;
+}
+
