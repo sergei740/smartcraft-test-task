@@ -18,7 +18,10 @@ export default ({ card }) => {
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.headerText}>{header}</div>
-        <button onClick={() => dispatch(openTaskDialog({ ...card, editStatus: true }))}>
+        <button
+          className={styles.btnSettings}
+          onClick={() => dispatch(openTaskDialog({ ...card, editStatus: true }))}
+        >
           <DarkSettingsIcon />
         </button>
       </div>

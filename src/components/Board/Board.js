@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 
 import styles from "./board.module.css"
 import Column from "../Column/Column"
 import boardColumns from "../../constants/boardColumns"
-// import { getTasks } from "../../store/actions"
 import { fetchTasks, getSearchInputValue } from "../../store/appReducer"
 
 export default ({ openTaskDialog }) => {
-  // const dispatch = useDispatch()
   const cards = useSelector(fetchTasks)
   const [filteredCards, setFilteredCards] = useState([])
   const inputValue = useSelector(getSearchInputValue)
@@ -18,19 +16,19 @@ export default ({ openTaskDialog }) => {
   }, [cards])
 
   useEffect(() => {
-    const newCards = cards.filter(card => {
-      return (
-        card.header.trim().toLowerCase().includes(inputValue.trim().toLowerCase()) ||
-        card.description.trim().toLowerCase().includes(inputValue.trim().toLowerCase())
-      )
-    })
+    if (cards.length) {
+      const newCards = cards.filter(({ header, description }) => {
+        const caseInsensetiveValue = inputValue.toLowerCase()
 
-    setFilteredCards(newCards)
+        return (
+          header.trim().toLowerCase().includes(caseInsensetiveValue) ||
+          description.trim().toLowerCase().includes(caseInsensetiveValue)
+        )
+      })
+
+      setFilteredCards(newCards)
+    }
   }, [inputValue, cards])
-
-  // useEffect(() => {
-  //   dispatch(getTasks())
-  // }, [dispatch])
 
   return (
     <div className={styles.container}>

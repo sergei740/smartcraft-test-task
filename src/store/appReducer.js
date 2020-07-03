@@ -1,5 +1,3 @@
-// import { cards as initialCards } from "../constants/cards"
-
 const INITIAL_STATE = {
   tasks: [],
   isTaskDialogOpened: false,
@@ -19,7 +17,7 @@ const appReducer = (state = INITIAL_STATE, action) => {
     case "CLOSE_SEARCH_INPUT":
       return { ...state, isSearchInputOpen: false }
     case "GET_TASKS":
-      return { ...state, tasks: action.tasks }
+      return { ...state, tasks: action.tasks || [] }
     case "ADD_TASK":
       return { ...state, tasks: [...state.tasks, action.task] }
     case "SET_SEARCH_INPUT_VALUE":

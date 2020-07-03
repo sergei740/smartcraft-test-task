@@ -8,7 +8,7 @@ import { closeSearchInput, setSearchInputValue } from "../../store/actions"
 export default () => {
   const dispatch = useDispatch()
 
-  const handleInput = e => dispatch(setSearchInputValue(e.target.value))
+  const handleInput = ({ target: { value } }) => dispatch(setSearchInputValue(value.trim()))
 
   return (
     <div className={styles.container}>
