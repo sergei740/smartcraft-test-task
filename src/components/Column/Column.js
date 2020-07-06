@@ -1,5 +1,6 @@
 import React from "react"
 import { useDispatch } from "react-redux"
+import { Droppable } from "react-beautiful-dnd"
 
 import styles from "./column.module.css"
 import Card from "../Card/Card"
@@ -19,18 +20,28 @@ export default ({ column, cards }) => {
         </div>
         <div>{cards.length}</div>
       </div>
-      <div className={styles.containerForCards} style={{ backgroundColor: color }}>
-        {cards.map((card, index) => (
-          <Card key={index} card={card} />
-        ))}
-        {status !== "live" && status !== "backlog" ? (
-          <AddTask
-            onClick={() =>
-              dispatch(openTaskDialog({ disableStatusSelect: false, status: column.status }))
-            }
-          />
-        ) : null}
-      </div>
+      <Droppable droppableId={status}>
+        {provided => (
+          <div
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+            className={styles.containerForCards}
+            style={{ backgroundColor: color }}
+          >
+            {cards.map((card, index) => (
+              <Card key={card.id} card={card} index={index} />
+            ))}
+            {provided.placeholder}
+            {status !== "live" ? (
+              <AddTask
+                onClick={() =>
+                  dispatch(openTaskDialog({ disableStatusSelect: false, status: column.status }))
+                }
+              />
+            ) : null}
+          </div>
+        )}
+      </Droppable>
     </div>
   )
 }

@@ -6,8 +6,8 @@ export const closeTaskDialog = () => {
   return { type: "CLOSE_TASK_DIALOG" }
 }
 
-export const getTasks = tasks => {
-  return { type: "GET_TASKS", tasks }
+export const setTasks = tasks => {
+  return { type: "SET_TASKS", tasks }
 }
 
 export const addTask = task => {

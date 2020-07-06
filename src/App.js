@@ -1,23 +1,50 @@
 import React, { useEffect } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { DragDropContext } from "react-beautiful-dnd"
 
 import Header from "./components/Header/Header"
 import Board from "./components/Board/Board"
 import Dialog from "./components/Dialog/Dialog"
-import { getTasks } from "./store/actions"
-import { subscribeOnDbChange } from "./api"
+import { setTasks } from "./store/actions"
+import { getTasks } from "./store/appReducer"
+import { subscribeOnDbChange, updateTaskInDb } from "./api"
 
 function App() {
   const dispatch = useDispatch()
+  const tasks = useSelector(getTasks)
 
-  useEffect(() => subscribeOnDbChange(dispatch, getTasks), [dispatch])
+  useEffect(() => subscribeOnDbChange(dispatch, setTasks), [dispatch])
+
+  const onDragEnd = result => {
+    const { draggableId, destination } = result
+    if (!destination) {
+      return
+    }
+    const droppableId = destination.droppableId
+    const tasksByDraggableId = tasks.find(task => task.id === draggableId)
+
+    updateTaskInDb({ ...tasksByDraggableId, status: droppableId })
+  }
+
+  const onDragUpdate = result => {
+    const { draggableId, destination } = result
+    if (!destination) {
+      return
+    }
+    const droppableId = destination.droppableId
+    const tasksByDraggableId = tasks.find(task => task.id === draggableId)
+
+    updateTaskInDb({ ...tasksByDraggableId, status: droppableId })
+  }
 
   return (
-    <div>
-      <Dialog />
-      <Header />
-      <Board />
-    </div>
+    <DragDropContext onDragUpdate={onDragUpdate} onDragEnd={onDragEnd}>
+      <div>
+        <Dialog />
+        <Header />
+        <Board />
+      </div>
+    </DragDropContext>
   )
 }
 

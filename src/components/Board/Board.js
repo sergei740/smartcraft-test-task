@@ -4,10 +4,10 @@ import { useSelector } from "react-redux"
 import styles from "./board.module.css"
 import Column from "../Column/Column"
 import boardColumns from "../../constants/boardColumns"
-import { fetchTasks, getSearchInputValue } from "../../store/appReducer"
+import { getTasks, getSearchInputValue } from "../../store/appReducer"
 
 export default ({ openTaskDialog }) => {
-  const cards = useSelector(fetchTasks)
+  const cards = useSelector(getTasks)
   const [filteredCards, setFilteredCards] = useState([])
   const inputValue = useSelector(getSearchInputValue)
 

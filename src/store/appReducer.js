@@ -16,7 +16,7 @@ const appReducer = (state = INITIAL_STATE, action) => {
       return { ...state, isSearchInputOpen: true }
     case "CLOSE_SEARCH_INPUT":
       return { ...state, isSearchInputOpen: false }
-    case "GET_TASKS":
+    case "SET_TASKS":
       return { ...state, tasks: action.tasks || [] }
     case "ADD_TASK":
       return { ...state, tasks: [...state.tasks, action.task] }
@@ -30,7 +30,7 @@ const appReducer = (state = INITIAL_STATE, action) => {
 export const getIsTaskDialogOpened = state => state.isTaskDialogOpened
 export const getIsTaskDialogProps = state => state.dialogProps
 export const getIsSearchInputOpen = state => state.isSearchInputOpen
-export const fetchTasks = state => state.tasks
+export const getTasks = state => state.tasks
 export const getSearchInputValue = state => state.searchInputValue
 
 export default appReducer

@@ -33,7 +33,7 @@
 }
 
 .btnContainer {
-  margin: 20px auto 0;
+  margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,12 +43,13 @@
   border-radius: 10px;
   color: #ffffff;
   background-color: #2196f3;
-  padding: 10px;
+  padding: 5px 10px;
   font-weight: bold;
   transition: all 0.5 ease-in-out;
 }
 
-.btnCreateTask:disabled:hover, .btnCreateTask:disabled {
+.btnCreateTask:disabled:hover,
+.btnCreateTask:disabled {
   background-color: gray;
 }
 
@@ -63,10 +64,20 @@
   top: 15px;
 }
 
+.containerForSelect {
+  width: 200px;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: space-between;
+  color: #2196f3;
+  font-weight: bold;
+}
+
 .containerForCheckBox {
   display: flex;
   width: 80%;
-  margin: auto;
+  margin: 20px auto;
   align-items: center;
   justify-content: space-between;
 }
@@ -74,7 +85,6 @@
 .checkBox {
   display: flex;
   align-items: center;
-  margin-top: 10px;
 }
 
 .checkBoxInput {

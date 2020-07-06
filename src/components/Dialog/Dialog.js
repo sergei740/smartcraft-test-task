@@ -40,9 +40,7 @@ export default () => {
   }
 
   const updateTask = () => {
-    delete taskCandidate.disableStatusSelect
-    delete taskCandidate.editStatus
-    updateTaskInDb(taskCandidate)
+    updateTaskInDb({...taskCandidate})
     dispatch(closeTaskDialog())
     setTaskCandidate({ status: "backlog", tags: [] })
   }
@@ -87,7 +85,8 @@ export default () => {
               onChange={handlerInput}
             />
             {(dialogProps.editStatus || !dialogProps.status) && (
-              <div>
+              <div className={styles.containerForSelect}>
+                <label htmlFor="status">Status:</label>
                 <select name="status" onChange={handlerInput} value={taskCandidate.status}>
                   <option checked value="backlog">
                     backlog

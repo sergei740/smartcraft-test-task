@@ -13,7 +13,7 @@ export default () => {
   return (
     <div className={styles.container}>
       <input onChange={handleInput} />
-      <button onClick={() => dispatch(closeSearchInput())}>
+      <button className={styles.btnClose} onClick={() => dispatch(closeSearchInput())}>
         <CloseIcon />
       </button>
     </div>

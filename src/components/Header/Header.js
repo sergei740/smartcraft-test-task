@@ -18,7 +18,7 @@ export default () => {
         <SearchInput />
       ) : (
         <div className={styles.buttonsContainer}>
-          <AddTask onClick={() => dispatch(openTaskDialog())} />
+          <AddTask color={"blue"} onClick={() => dispatch(openTaskDialog())} />
           <button className={styles.btnSearch} onClick={() => dispatch(openSearchInput())}>
             <SearchIcon />
           </button>
