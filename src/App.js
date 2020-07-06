@@ -15,17 +15,6 @@ function App() {
 
   useEffect(() => subscribeOnDbChange(dispatch, setTasks), [dispatch])
 
-  const onDragEnd = result => {
-    const { draggableId, destination } = result
-    if (!destination) {
-      return
-    }
-    const droppableId = destination.droppableId
-    const tasksByDraggableId = tasks.find(task => task.id === draggableId)
-
-    updateTaskInDb({ ...tasksByDraggableId, status: droppableId })
-  }
-
   const onDragUpdate = result => {
     const { draggableId, destination } = result
     if (!destination) {
@@ -38,7 +27,7 @@ function App() {
   }
 
   return (
-    <DragDropContext onDragUpdate={onDragUpdate} onDragEnd={onDragEnd}>
+    <DragDropContext onDragUpdate={onDragUpdate}>
       <div>
         <Dialog />
         <Header />
